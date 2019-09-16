@@ -151,8 +151,14 @@ struct ipv4_header read_ipv4_header(char* buf) {
     return header;
 }
 
+void handle_icmp_packet(struct ip_packet packet) {
+    
+}
+
 void handle_ip_packet(struct ip_packet packet) {
-    print_buffer(packet.data, packet.data_length);
+    if (packet.header.protocol == IP_PROTO_ICMP) {
+        handle_icmp_packet(packet);
+    }
 }
 
 int main() {
